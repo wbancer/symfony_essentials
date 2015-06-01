@@ -11,13 +11,17 @@ class TaskController extends Controller
 {
     public function listAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $em = $this->getDoctrine()->getManager();
 
         $tasks = $em->getRepository('AppBundle:Task')
             ->createQueryBuilder('t')
             ->where('t.finished = :finished')
+            ->andWhere('t.user = :user')
             ->orderBy('t.due_date', 'ASC')
             ->setParameter('finished', false)
+            ->setParameter('user', $this->getUser())
             ->getQuery()
             ->getResult();
 
@@ -29,6 +33,7 @@ class TaskController extends Controller
 
         if ($form->isValid()) {
             $task = $form->getData();
+            $task->setUser($this->getUser());
 
             $em->persist($task);
             $em->flush();
@@ -36,6 +41,7 @@ class TaskController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
 
+        $this->get('translator')->trans('Hello user');
 
         return $this->render('task/list.html.twig', [
             'tasks' => $tasks,

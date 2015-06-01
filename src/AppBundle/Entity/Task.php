@@ -48,7 +48,12 @@ class Task
      * @ORM\Column(type="boolean")
      */
     private $finished = 0;
-    
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $user;
+
     /**
      * Constructor
      */

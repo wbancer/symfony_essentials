@@ -16,9 +16,19 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <div class="ui menu">
+            <div class="item right">
+                {% if is_granted('ROLE_USER') %}
+                    Logged in as: <strong>{{ app.user.username }}</strong> | <a href="{{ path('fos_user_security_logout') }}">Log-out</a>
+                {% else %}
+                    <a href="{{ path('fos_user_registration_register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
             {% javascripts
                 'js/vendor/semantic-ui/semantic.min.js'
                 'js/dev/app.js'

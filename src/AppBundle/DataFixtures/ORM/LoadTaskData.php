@@ -2,10 +2,9 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Task;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use AppBundle\Entity\Task;
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadTaskData extends AbstractFixture implements OrderedFixtureInterface
@@ -17,9 +16,12 @@ class LoadTaskData extends AbstractFixture implements OrderedFixtureInterface
         $obj->setNotes('This task is created as a fixture and has no real meaning. It\'s only demonstration, sorry to dissapoint you');
         $obj->setCreatedAt(new \DateTime());
         $obj->setFinished(false);
+
         $obj->setDueDate(new \DateTime());
         $obj->addTag($this->getReference('tag:home'));
         $obj->addTag($this->getReference('tag:important'));
+
+        $obj->setUser($this->getReference('user:todo'));
 
         $manager->persist($obj);
         $manager->flush();
@@ -29,5 +31,4 @@ class LoadTaskData extends AbstractFixture implements OrderedFixtureInterface
     {
         return 10;
     }
-
 }

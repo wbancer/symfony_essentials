@@ -2,3 +2,11 @@ app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /
 
+# bundles routings
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    prefix: /
+
+fos_user_registration:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
