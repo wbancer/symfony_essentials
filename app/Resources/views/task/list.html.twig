@@ -1,5 +1,7 @@
 {% extends '::base.html.twig' %}
 
+{% form_theme form 'Form/theme.html.twig' %}
+
 {% block body %}
     <h2 class="ui aligned header">Your tasks list</h2>
     <p class="ui aligned">Below you will find your unfinished tasks</p>
@@ -36,4 +38,17 @@
         {% endfor %}
         </tbody>
     </table>
+
+    <p>New task:</p>
+    <div style="width: 585px;">
+        {{ form(form) }}
+    </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.dropdown').dropdown();
+    </script>
+{% endblock %}
+

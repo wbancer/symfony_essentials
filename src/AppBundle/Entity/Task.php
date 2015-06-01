@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -24,6 +25,7 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -53,6 +55,11 @@ class Task
     public function __construct()
     {
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+
+        // adding default values
+        $this->due_date = new \DateTime('+1 day');
+        $this->created_at = new \DateTime();
+        $this->finished = false;
     }
 
     /**
