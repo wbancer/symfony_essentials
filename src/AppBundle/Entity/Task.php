@@ -41,6 +41,12 @@ class Task
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $finished = 0;
+    
     /**
      * Constructor
      */
@@ -182,5 +188,28 @@ class Task
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * Set finished
+     *
+     * @param boolean $finished
+     * @return Task
+     */
+    public function setFinished($finished)
+    {
+        $this->finished = $finished;
+
+        return $this;
+    }
+
+    /**
+     * Get finished
+     *
+     * @return boolean 
+     */
+    public function getFinished()
+    {
+        return $this->finished;
     }
 }
