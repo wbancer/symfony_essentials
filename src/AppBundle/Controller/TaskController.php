@@ -41,8 +41,6 @@ class TaskController extends Controller
             return $this->redirect($this->generateUrl('homepage'));
         }
 
-        $this->get('translator')->trans('Hello user');
-
         return $this->render('task/list.html.twig', [
             'tasks' => $tasks,
             'form' => $form->createView()
