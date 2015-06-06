@@ -23,7 +23,7 @@ class TaskType extends AbstractType
                     ->create('tags', 'text')
                     ->addModelTransformer($trans)
             )
-            ->add('add', 'submit', ['label' => 'Add Task', 'attr' => ['class' => 'ui primary button']])
+            ->add('add', 'submit', ['label' => 'label.add_task', 'attr' => ['class' => 'ui primary button']])
         ;
     }
 

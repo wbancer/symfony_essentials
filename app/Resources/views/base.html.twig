@@ -19,9 +19,9 @@
         <div class="ui menu">
             <div class="item right">
                 {% if is_granted('ROLE_USER') %}
-                    Logged in as: <strong>{{ app.user.username }}</strong> | <a href="{{ path('fos_user_security_logout') }}">Log-out</a>
+                    {{ 'top_menu.logged_in'|trans({ '%username%': app.user.username })|raw }} | <a href="{{ path('fos_user_security_logout') }}">{{ 'top_menu.logout'|trans }}</a>
                 {% else %}
-                    <a href="{{ path('fos_user_registration_register') }}">Register</a>
+                    <a href="{{ path('fos_user_registration_register') }}">{{ 'top_menu.register'|trans }}</a>
                 {% endif %}
             </div>
         </div>

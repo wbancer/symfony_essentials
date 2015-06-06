@@ -27,3 +27,12 @@
         </div>
     </div>
 {%- endblock date_widget -%}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if label is empty %}
+            {% set label = "label." ~ form.vars.name %}
+        {% endif %}
+        {{ parent() }}
+    {% endspaceless %}
+{% endblock form_label %}

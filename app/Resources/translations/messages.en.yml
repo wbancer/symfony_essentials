@@ -1,0 +1,21 @@
+top_menu:
+    logged_in: Logged in as: <strong>%username%</strong>
+    logout: Log-out
+    register: Register
+
+todo_list:
+    title: Your tasks list
+    description: Below you will find your unfinished tasks
+    name: Name
+    notes: Notes
+    tags: Tags
+    due: Due
+    no_unfinished: There are no unfinished tasks at the moment. Good Job!
+    new: New task
+
+label:
+    name: Name
+    notes: Notes
+    due_date: Due date
+    tags: Tags
+    add_task: Add task

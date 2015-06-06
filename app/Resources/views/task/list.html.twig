@@ -3,16 +3,16 @@
 {% form_theme form 'Form/theme.html.twig' %}
 
 {% block body %}
-    <h2 class="ui aligned header">Your tasks list</h2>
-    <p class="ui aligned">Below you will find your unfinished tasks</p>
+    <h2 class="ui aligned header">{{ 'todo_list.title'|trans }}</h2>
+    <p class="ui aligned">{{ 'todo_list.description'|trans }}</p>
 
     <table class="ui blue table">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Notes</th>
-                <th>Tags</th>
-                <th>Due</th>
+                <th>{{ 'todo_list.name'|trans }}</th>
+                <th>{{ 'todo_list.notes'|trans }}</th>
+                <th>{{ 'todo_list.tags'|trans }}</th>
+                <th>{{ 'todo_list.due'|trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -32,14 +32,14 @@
             {% else %}
                 <tr>
                     <td colspan="4" class="center aligned">
-                            <h2>There are no unfinished tasks at the moment. Good Job!</h2>
+                            <h2>{{ 'todo_list.no_unfinished'|trans }}</h2>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <p>New task:</p>
+    <p>{{ 'todo_list.new'|trans }}</p>
     <div style="width: 585px;">
         {{ form(form) }}
     </div>
