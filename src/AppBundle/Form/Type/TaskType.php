@@ -20,7 +20,7 @@ class TaskType extends AbstractType
             ->add('due_date')
             ->add(
                 $builder
-                    ->create('tags', 'text')
+                    ->create('tags', 'text', ['required' => false])
                     ->addModelTransformer($trans)
             )
             ->add('add', 'submit', ['label' => 'label.add_task', 'attr' => ['class' => 'ui primary button']])
@@ -31,6 +31,7 @@ class TaskType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Task',
+            'csrf_protection' => false
         ))
         ->setRequired(['em'])
         ->setAllowedTypes('em', 'Doctrine\ORM\EntityManager');

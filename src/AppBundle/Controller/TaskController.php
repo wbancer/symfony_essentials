@@ -25,9 +25,18 @@ class TaskController extends Controller
             ->getQuery()
             ->getResult();
 
-        $newTask = new Task();
+        $taskObj = null;
+        $id = $request->get('id');
 
-        $form = $this->createForm(new TaskType(), $newTask, ['em' => $em]);
+        if ($id) {
+            $taskObj = $em->find('AppBundle:Task', $id);
+        }
+
+        if (null === $taskObj) {
+            $taskObj = new Task();
+        }
+
+        $form = $this->createForm(new TaskType(), $taskObj, ['em' => $em]);
 
         $form->handleRequest($request);
 

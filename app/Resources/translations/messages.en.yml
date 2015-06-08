@@ -11,11 +11,12 @@ todo_list:
     tags: Tags
     due: Due
     no_unfinished: There are no unfinished tasks at the moment. Good Job!
-    new: New task
+    new: New/update task
+    actions: Actions
 
 label:
     name: Name
     notes: Notes
     due_date: Due date
     tags: Tags
-    add_task: Add task
+    add_task: Add/update task

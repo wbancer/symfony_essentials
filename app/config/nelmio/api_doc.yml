@@ -1,0 +1,12 @@
+nelmio_api_doc:
+    name: TODO App
+    sandbox:
+        body_format:
+            formats:
+              - form
+            default_format: form
+        request_format:
+            formats:
+              JSON: application/json
+            default_format: JSON
+            method: accept_header

@@ -3,6 +3,8 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: fos/user.yml }
+    - { resource: fos/rest.yml }
+    - { resource: nelmio/api_doc.yml }
 
 framework:
     #esi:             ~

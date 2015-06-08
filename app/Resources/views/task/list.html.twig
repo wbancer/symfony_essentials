@@ -1,7 +1,5 @@
 {% extends '::base.html.twig' %}
 
-{% form_theme form 'Form/theme.html.twig' %}
-
 {% block body %}
     <h2 class="ui aligned header">{{ 'todo_list.title'|trans }}</h2>
     <p class="ui aligned">{{ 'todo_list.description'|trans }}</p>
@@ -13,11 +11,12 @@
                 <th>{{ 'todo_list.notes'|trans }}</th>
                 <th>{{ 'todo_list.tags'|trans }}</th>
                 <th>{{ 'todo_list.due'|trans }}</th>
+                <th>{{ 'todo_list.actions'|trans }}</th>
             </tr>
         </thead>
         <tbody>
             {% for task in tasks %}
-            <tr>
+            <tr data-task-id="{{ task.id }}">
                 <td>{{ task.name }}</td>
                 <td>{{ task.notes }}</td>
                 <td>
@@ -28,26 +27,23 @@
                 <td>
                     {{ task.dueDate is empty ? "" : task.dueDate|date('Y-m-d') }}
                 </td>
+                <td>
+                    <a href="#" class="action" data-action="edit"><i class="edit icon"></i></a>
+                    <a href="#" class="action" data-action="finish"><i class="checkmark icon"></i></a>
+                    <a href="#" class="action" data-action="delete"><i class="remove icon"></i></a>
+                </td>
             </tr>
             {% else %}
                 <tr>
                     <td colspan="4" class="center aligned">
-                            <h2>{{ 'todo_list.no_unfinished'|trans }}</h2>
+                        <h2>{{ 'todo_list.no_unfinished'|trans }}</h2>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <p>{{ 'todo_list.new'|trans }}</p>
-    <div style="width: 585px;">
-        {{ form(form) }}
+    <div id="todo_form">
+        {% include 'task/form.html.twig' %}
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $('.dropdown').dropdown();
-    </script>
 {% endblock %}
