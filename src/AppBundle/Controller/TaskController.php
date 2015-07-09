@@ -15,6 +15,9 @@ class TaskController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        $watch = $this->get('debug.stopwatch');
+        $watch->start('Fetching Tasks');
+
         $tasks = $em->getRepository('AppBundle:Task')
             ->createQueryBuilder('t')
             ->where('t.finished = :finished')
@@ -24,6 +27,12 @@ class TaskController extends Controller
             ->setParameter('user', $this->getUser())
             ->getQuery()
             ->getResult();
+;
+        $watch->stop('Fetching Tasks');
+
+        dump(['hello' => 'world']);
+        dump($request);
+        dump($tasks);
 
         $taskObj = null;
         $id = $request->get('id');
@@ -36,11 +45,14 @@ class TaskController extends Controller
             $taskObj = new Task();
         }
 
+        $watch->start('Handling form');
+
         $form = $this->createForm(new TaskType(), $taskObj, ['em' => $em]);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
             $task = $form->getData();
             $task->setUser($this->getUser());
 
@@ -49,6 +61,8 @@ class TaskController extends Controller
 
             return $this->redirect($this->generateUrl('homepage'));
         }
+
+        $watch->stop('Handling form');
 
         return $this->render('task/list.html.twig', [
             'tasks' => $tasks,
