@@ -27,12 +27,14 @@ class TaskController extends Controller
             ->setParameter('user', $this->getUser())
             ->getQuery()
             ->getResult();
-;
+
         $watch->stop('Fetching Tasks');
 
-        dump(['hello' => 'world']);
-        dump($request);
-        dump($tasks);
+        if ($this->get('kernel')->getEnvironment() == 'dev') {
+            dump(['hello' => 'world']);
+            dump($request);
+            dump($tasks);
+        }
 
         $taskObj = null;
         $id = $request->get('id');
